@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mars Scraping</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static',filename='styles/main.css') }}"/>
+    
+</head>
+<body>
+
+    <div class="jumbotron text-center py-3">
+        
+        <h4 class="display-4">Mars Information Online</h4>
+        <p class="lead">On this web site you can find the actual information about the planet Mars</p>
+        <hr class="my-2">
+        <p>Click the button below to get the newest data:</p>
+        <a class="btn btn-outline-warning btn-lg" href="/scrape" role="button">Renew</a>
+        
+    </div>
+
+    <div class='wrapper'>    
+        <div class="container-fluid wrapper">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="display-5">Featured Mars Image:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2 col-md-10 offset-md-1">
+                    <img src={{mars_info.image}} class="img-responsive w-100" alt="Background image"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid bg-light text-dark mt-5">
+        <div class="row">
+            <div class='col-12'>
+                <h3>Breaking News From Mars:</h3>
+                <h4>{{mars_info.news_title}}</h4>
+                <p>{{mars_info.news_paragraph}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-md mb-4 text-left">
+                <div class="container border border-warning mb-4">
+                    <h3>Current Weather On Mars:</h3>
+                    <p>{{mars_info.weather}}</p>
+                </div>
+
+                <h3>Mars Facts:</h3>
+                {{mars_info.facts_table | safe}}
+            </div>
+
+            <div class="col-md">
+                <div class="container text-center">
+                    <h3>Take A Closer Look:</h3>
+                    <h6>To open in a high resolution click the image</h6>
+                    <div class="fluid-container mt-3">
+
+                        {% for h in mars_info.hemispheres %}
+                        
+                            {% if loop.index0 is divisibleby 2 %} <!-- works for even arrays -->
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <a href={{h.img_url}} target="blank"><img src={{h.img_url}} class="img-responsive rounded-circle w-100" alt={{h.title}}/>{{h.title}}</a>
+                                    </div>
+
+                            {% else %}
+                                <div class="col-lg">
+                                    <a href={{h.img_url}} target="blank"><img src={{h.img_url}} class="img-responsive rounded-circle w-100" alt={{h.title}}/>{{h.title}}</a>
+                                </div>
+                                </div>
+                            {% endif %}
+
+                        {% endfor %}
+
+                        <!-- <div class="row">
+                            <div class="col-lg">
+                                <a href="#"><img src='http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg' class="img-responsive w-100 rounded-circle" alt="Background image"/>img1</a>
+                            </div>
+                            <div class="col-lg">
+                                <a href="#"><img src='http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg' class="img-responsive w-100 rounded-circle" alt="Background image"/>img1</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg">
+                                <a href="#"><img src='http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg' class="img-responsive w-100 rounded-circle" alt="Background image"/>img1</a>
+                            </div>
+                            <div class="col-lg">
+                                <a href="#"><img src='http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg' class="img-responsive w-100 rounded-circle" alt="Background image"/>img1</a>
+                            </div>  
+                        </div> -->
+                            <!-- </div> -->
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
+</body>
+</html>

@@ -1,0 +1,1 @@
+web: gunicorn mars_app.mars:mars --timeout 1200
