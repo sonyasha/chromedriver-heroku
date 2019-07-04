@@ -40,7 +40,7 @@ def scrape_mars():
     browser.get(url)
     time.sleep(3)
 
-    tweet_features = 'Sol' and 'high' and 'low' and 'pressure' and 'hPa' and 'daylight'
+    tweet_features = 'sol' and 'high' and 'low' and 'pressure' and 'hPa' and 'mph'
     
     html = browser.page_source
     soup = BeautifulSoup(html, 'html.parser')
