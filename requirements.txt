@@ -18,7 +18,7 @@ jupyter-client==5.2.3
 jupyter-core==4.4.0
 lxml==4.2.3
 MarkupSafe==1.0
-numpy==1.14.5
+numpy==1.22.0
 pandas==0.23.3
 parso==0.2.1
 pexpect==4.6.0
